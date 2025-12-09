@@ -2,7 +2,7 @@
 
 A modern, responsive calculator web application featuring a glassmorphism design, theme switching, history tracking, and scientific functions.
 
-🔗 **[Live Demo](https://sudhir314.github.io/calculator/cal.html)**
+🔗 [Live Demo](https://sudhir314.github.io/calculator/)
 
 ## ✨ Features
 
