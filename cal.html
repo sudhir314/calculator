@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgraded Calculator | The Code School</title>
+    <link rel="stylesheet" href="cal.css">
+</head>
+<body>
+    
+    <div class="calculator">
+        <div class="theme-toggler">
+            <span class="light-mode active">☀️</span>
+            <span class="dark-mode">🌙</span>
+        </div>
+
+        <div class="display">
+            <input type="text" id="inputBox" value="0" placeholder="0" disabled>
+        </div>
+
+        <div class="row">
+            <button type="button" class="opr-sci">(</button>
+            <button type="button" class="opr-sci">)</button>
+            <button type="button" class="opr-sci">x²</button>
+            <button type="button" class="opr-sci">√</button>
+        </div>
+
+        <div class="row">
+            <button type="button" class="opr">AC</button>
+            <button type="button" class="opr">DEL</button>
+            <button type="button" class="opr">%</button>
+            <button type="button" class="opr">/</button>
+        </div>
+        <div class="row">
+            <button type="button">7</button>
+            <button type="button">8</button>
+            <button type="button">9</button>
+            <button type="button" class="opr">*</button>
+        </div>
+        <div class="row">
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button">6</button>
+            <button type="button" class="opr">+</button>
+        </div>
+        <div class="row">
+            <button type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button" class="opr">-</button>
+        </div>
+        <div class="row">
+            <button type="button" id="plusMinus">±</button>
+            <button type="button">0</button>
+            <button type="button">.</button>
+            <button type="button" id="eqBtn">=</button>
+        </div>
+    </div>
+
+    <div class="history-panel">
+        <h3>History</h3>
+        <ul id="history-list">
+            </ul>
+        <button id="clear-history">Clear History</button>
+    </div>
+
+    <script src="cal.js"></script>
+</body>
+</html>

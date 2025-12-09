@@ -1,0 +1,261 @@
+/* --- STEP 2: CSS VARIABLES FOR THEME TOGGLING --- */
+:root {
+    /* Light "Glass" Theme (Default) */
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --calc-bg: rgba(255, 255, 255, 0.1);
+    --calc-border: rgba(255, 255, 255, 0.2);
+    --calc-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --text-color: #fff;
+    --btn-bg: rgba(255, 255, 255, 0.15);
+    --btn-border: rgba(255, 255, 255, 0.2);
+    --btn-hover-bg: rgba(255, 255, 255, 0.3);
+    --btn-active-bg: rgba(255, 255, 255, 0.1);
+    --opr-color: #d8b4fe; /* Light purple */
+    --sci-opr-color: #a7f3d0; /* Light green */
+    --eq-bg: #a855f7; /* Vibrant purple */
+    --toggler-bg: rgba(255, 255, 255, 0.15);
+    --toggler-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+    --history-bg: rgba(255, 255, 255, 0.1);
+}
+
+body.dark {
+    /* Dark Theme */
+    --bg-gradient: linear-gradient(135deg, #0a0a0a, #3a4452);
+    --calc-bg: rgba(10, 10, 10, 0.7);
+    --calc-border: rgba(255, 255, 255, 0.1);
+    --calc-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    --text-color: #fff;
+    --btn-bg: rgba(255, 255, 255, 0.05);
+    --btn-border: rgba(255, 255, 255, 0.1);
+    --btn-hover-bg: rgba(255, 255, 255, 0.1);
+    --btn-active-bg: rgba(255, 255, 255, 0.02);
+    --opr-color: #fbff00; /* Original yellow */
+    --sci-opr-color: #a7f3d0; /* Light green */
+    --eq-bg: orangered; /* Original red */
+    --toggler-bg: rgba(0, 0, 0, 0.2);
+    --toggler-shadow: inset 0 0 4px rgba(255,255,255,0.1);
+    --history-bg: rgba(10, 10, 10, 0.7);
+}
+/* --- END OF VARIABLES --- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'helvetica', sans-serif;
+    letter-spacing: 1px;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows history panel to sit next to/below calculator */
+    gap: 30px;
+    padding: 20px;
+    background: var(--bg-gradient); /* Use variable */
+    transition: background 0.3s ease;
+}
+
+.calculator {
+    background: var(--calc-bg); /* Use variable */
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--calc-border); /* Use variable */
+    box-shadow: var(--calc-shadow); /* Use variable */
+    padding: 15px;
+    border-radius: 20px;
+    animation: fadeIn 0.5s ease-out;
+    position: relative; /* Needed for theme toggler positioning */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.display input {
+    width: 360px;
+    border: none;
+    outline: none;
+    padding: 20px;
+    margin: 10px;
+    background: transparent;
+    color: var(--text-color); /* Use variable */
+    font-size: 45px;
+    text-align: right;
+    cursor: default;
+}
+
+input::placeholder {
+    color: var(--text-color); /* Use variable */
+}
+
+button {
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    background: var(--btn-bg); /* Use variable */
+    border: 1px solid var(--btn-border); /* Use variable */
+    color: var(--text-color); /* Use variable */
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 17%;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: var(--btn-hover-bg); /* Use variable */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    background: var(--btn-active-bg); /* Use variable */
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+/* --- STEP 2: THEME TOGGLER STYLES --- */
+.theme-toggler {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    display: flex;
+    background: var(--toggler-bg);
+    border-radius: 20px;
+    padding: 4px;
+    box-shadow: var(--toggler-shadow);
+}
+
+.theme-toggler span {
+    font-size: 16px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggler span.active {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- STEP 3: HISTORY PANEL STYLES --- */
+.history-panel {
+    background: var(--history-bg); /* Use variable */
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--calc-border); /* Use variable */
+    box-shadow: var(--calc-shadow); /* Use variable */
+    padding: 20px;
+    border-radius: 20px;
+    width: 300px;
+    height: 480px; /* Match calculator height */
+    display: flex;
+    flex-direction: column;
+}
+
+.history-panel h3 {
+    color: var(--text-color);
+    text-align: center;
+    border-bottom: 1px solid var(--calc-border);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#history-list {
+    list-style: none;
+    color: var(--text-color);
+    flex-grow: 1;
+    overflow-y: auto; /* Make history scrollable */
+}
+
+#history-list li {
+    padding: 8px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
+#clear-history {
+    width: 100%;
+    margin: 10px 0 0 0;
+    background: var(--btn-bg);
+}
+
+/* --- BUTTON COLOR STYLES --- */
+.opr {
+    color: var(--opr-color); /* Use variable */
+    font-weight: 600;
+}
+
+/* --- STEP 4: SCIENTIFIC BUTTON STYLES --- */
+.opr-sci {
+    color: var(--sci-opr-color); /* Use variable */
+    font-weight: 600;
+}
+
+#eqBtn {
+    background: var(--eq-bg); /* Use variable */
+    font-weight: 700;
+}
+
+/* --- STEP 1: RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Stack vertically on mobile */
+        gap: 20px;
+        padding: 10px;
+    }
+    
+    .history-panel {
+        width: 100%;
+        max-width: 400px; /* Match calculator max-width */
+        height: 200px; /* Shorter history on mobile */
+    }
+
+    .calculator {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+    }
+    .display input {
+        width: 95%; /* Use percentage */
+        font-size: 40px;
+        margin: 5px;
+    }
+    button {
+        width: 20%; /* Use percentage */
+        height: 60px;
+        margin: 1.5%; /* Use percentage */
+        font-size: 20px;
+    }
+}   /* --- NEW ANIMATION KEYFRAMES --- */
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* --- NEW TRIGGER CLASSES --- */
+/* We apply these to the .display div */
+
+.display.pop {
+    animation: pop 0.2s ease-in-out;
+}
+
+.display.shake {
+    animation: shake 0.3s ease-in-out;
+}
